@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيد ميلاد سعيد يا كل دنيتي ❤️</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: linear-gradient(135deg, #ffe4e1, #ffb6c1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* خلفية القلوب المتساقطة */
+        .heart-fall {
+            position: absolute;
+            top: -10%;
+            font-size: 20px;
+            animation: fall linear infinite;
+            z-index: 1;
+            user-select: none;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+        /* كرت المعايدة الرئيسي */
+        .card-container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            z-index: 10;
+            border: 2px solid #fff;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        /* إطار الصورة الشخصية */
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ff69b4;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            transition: transform 0.5s;
+        }
+        .profile-img:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+        h1 {
+            color: #d11a5b;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        /* زر المفاجأة التفاعلي */
+        .btn-love {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        .btn-love:hover {
+            background-color: #d11a5b;
+            transform: translateY(-3px);
+        }
+        /* الرسالة السرية التي تظهر عند الضغط */
+        .hidden-message {
+            display: none;
+            margin-top: 20px;
+            color: #d11a5b;
+            font-weight: bold;
+            font-size: 1.2rem;
+            animation: pulse 1s infinite alternate;
+        }
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- كرت المعايدة -->
+    <div class="card-container">
+        <!-- استبدل الرابط أدناه برابط صورتها أو صورتكما معاً -->
+        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500" alt="صورة الحبيبة" class="profile-img">
+        
+        <h1>كل عام وأنتِ بقلبي وعمري ❤️</h1>
+        
+        <p>اليوم هو أجمل أيام السنة لأنه اليوم الذي وُلدتِ فيه وجئتِ لتنيري عالمي. شكراً لأنكِ في حياتي، وشكراً لكل لحظة جميلة معكِ.</p>
+        
+        <button class="btn-love" onclick="showSurprise()">اضغطي هنا لمعرفة سر 🤫</button>
+        
+        <div class="hidden-message" id="secretMsg">
+            أحبكِ اليوم، غداً، وإلى الأبد! 💍✨
+        </div>
+    </div>
+
+    <!-- كود الجافا سكريبت لتأثير القلوب والزر -->
+    <script>
+        // دالة إنشاء القلوب المتساقطة تلقائياً
+        function createHearts() {
+            const heartSymbols = ['❤️', '💖', '💝', '💕', '🌸'];
+            const heart = document.createElement('div');
+            heart.classList.add('heart-fall');
+            
+            // اختيار شكل عشوائي وموقع عشوائي للقلب
+            heart.innerText = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s"; // سرعة السقوط
+            heart.style.opacity = Math.random();
+            heart.style.fontSize = Math.random() * 15 + 15 + "px";
+            
+            document.body.appendChild(heart);
+            
+            // إزالة القلب بعد انتهاء الحركة للحفاظ على أداء المتصفح
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        
+        // إطلاق القلوب كل 300 ميلي ثانية
+        setInterval(createHearts, 300);
+
+        // دالة إظهار الرسالة السرية عند الضغط على الزر
+        function showSurprise() {
+            const msg = document.getElementById('secretMsg');
+            msg.style.display = 'block';
+            
+            // إحداث تأثير انفجار قلوب إضافية عند الضغط
+            for(let i=0; i<20; i++) {
+                setTimeout(createHearts, i * 50);
+            }
+        }
+    </script>
+</body>
+</html>
